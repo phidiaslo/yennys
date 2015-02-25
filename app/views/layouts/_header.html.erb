@@ -25,7 +25,7 @@
               <li><%= link_to "#{location.name}", location %></li>
             <% end %>
             <li class="divider"></li>
-            <li>Trending Items Link</li>
+            
             <% @categories.each do |category| %>
               <li><%= link_to "#{category.name}", category %></li>
             <% end %>
@@ -36,12 +36,12 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-        <li>Your Shop Link</li>
+        <li><%= link_to "Your Shop", root_path %></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.username %> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li>My Purchases Link</li>
-            <li>Edit Profile Link</li>
+            <li><%= link_to "My Purchases", root_path %></li>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
             <li><%= link_to "Account Settings", edit_user_registration_path %></li>
             <li class="divider"></li>
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
