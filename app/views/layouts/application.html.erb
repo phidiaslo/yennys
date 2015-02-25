@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yenny</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="content-container">
+<%= render 'layouts/header' %>
+<%= render 'layouts/notification' %>
+<%= yield %>
+<%= render 'layouts/footer' %>
+</div>
+</body>
+</html>
