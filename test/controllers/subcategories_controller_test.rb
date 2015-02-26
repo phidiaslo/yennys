@@ -18,7 +18,7 @@ class SubcategoriesControllerTest < ActionController::TestCase
 
   test "should create subcategory" do
     assert_difference('Subcategory.count') do
-      post :create, subcategory: { name: @subcategory.name }
+      post :create, subcategory: { category_id: @subcategory.category_id, name: @subcategory.name }
     end
 
     assert_redirected_to subcategory_path(assigns(:subcategory))
@@ -35,7 +35,7 @@ class SubcategoriesControllerTest < ActionController::TestCase
   end
 
   test "should update subcategory" do
-    patch :update, id: @subcategory, subcategory: { name: @subcategory.name }
+    patch :update, id: @subcategory, subcategory: { category_id: @subcategory.category_id, name: @subcategory.name }
     assert_redirected_to subcategory_path(assigns(:subcategory))
   end
 

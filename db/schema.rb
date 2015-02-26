@@ -11,13 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225110005) do
+ActiveRecord::Schema.define(version: 20150226034040) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "listings", force: :cascade do |t|
+    t.string   "name",            limit: 140
+    t.text     "description"
+    t.decimal  "price",                       precision: 10, scale: 2
+    t.string   "processing_time"
+    t.integer  "view_count",                                           default: 0,                  null: false
+    t.string   "status",                                               default: "Pending Approval"
+    t.string   "slug"
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.integer  "subcategory_id"
+    t.integer  "location_id"
+    t.datetime "created_at",                                                                        null: false
+    t.datetime "updated_at",                                                                        null: false
+  end
+
+  add_index "listings", ["category_id"], name: "index_listings_on_category_id"
+  add_index "listings", ["location_id"], name: "index_listings_on_location_id"
+  add_index "listings", ["slug"], name: "index_listings_on_slug", unique: true
+  add_index "listings", ["subcategory_id"], name: "index_listings_on_subcategory_id"
+  add_index "listings", ["user_id"], name: "index_listings_on_user_id"
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
@@ -27,9 +49,12 @@ ActiveRecord::Schema.define(version: 20150225110005) do
 
   create_table "subcategories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
+
+  add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",       null: false

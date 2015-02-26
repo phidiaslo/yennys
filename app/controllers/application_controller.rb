@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :set_header_variable
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
 
   def set_header_variable
     @categories = Category.all.order(:name)

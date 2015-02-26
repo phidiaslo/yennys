@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'listings/update_subcategories', :as => 'update_subcategories'
+
+  resources :listings
+
   resources :locations
 
   resources :subcategories

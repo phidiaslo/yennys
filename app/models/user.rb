@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   GENDER_SELECT = ['Male', 'Female', 'Rather not say']
   ROLE_SELECT = ['Member', 'Admin']
 
-  #has_many :listings, dependent: :destroy
+  has_many :listings, dependent: :destroy
 
   def age(birthday)
     now = Time.now.utc.to_date

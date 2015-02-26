@@ -4,12 +4,13 @@ class SubcategoriesController < ApplicationController
   # GET /subcategories
   # GET /subcategories.json
   def index
-    @subcategories = Subcategory.all
+    @subcategories = Subcategory.all.includes(:category)
   end
 
   # GET /subcategories/1
   # GET /subcategories/1.json
   def show
+    @listings = Listing.where(subcategory_id: @subcategory).order('created_at DESC').includes(:user)
   end
 
   # GET /subcategories/new
@@ -69,6 +70,6 @@ class SubcategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subcategory_params
-      params.require(:subcategory).permit(:name)
+      params.require(:subcategory).permit(:name, :category_id)
     end
 end
